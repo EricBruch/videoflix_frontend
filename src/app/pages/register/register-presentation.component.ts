@@ -2,14 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home-presentation',
+  selector: 'app-register-presentation',
   standalone: true,
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <div>
-      <p class="text-center">Welcome to videoflix startpage</p>
-    </div>
-  `,
+  template: ` <p>hello there from register</p>`,
 })
-export class HomePresentationComponent {}
+export class RegisterPresentationComponent {}

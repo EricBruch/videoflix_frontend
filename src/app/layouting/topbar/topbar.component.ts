@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import { TopbarPresentationComponent } from './topbar-presentation.component';
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatButtonModule],
+  imports: [CommonModule, TopbarPresentationComponent],
   changeDetection: ChangeDetectionStrategy.Default,
-  templateUrl: './topbar.component.html',
+  template: `<app-topbar-presentation></app-topbar-presentation>`,
 })
 export class TopbarComponent {}
