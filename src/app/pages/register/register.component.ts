@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterPresentationComponent } from './register-presentation.component';
 import {
@@ -11,6 +11,9 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { RegisterFacade } from './register.facade';
+import { RegisterUser } from 'src/app/core';
+import { first } from 'rxjs';
 
 const matchPasswValidator: ValidatorFn = (
   a: AbstractControl
@@ -38,12 +41,13 @@ export type RegisterForm = FormGroup<{
   template: ` <app-register-presentation
     [form]="form"
     [isSignUpDisabled]="!form.valid"
+    (signUp)="onSignUp()"
   ></app-register-presentation>`,
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   form;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private facade: RegisterFacade) {
     this.form = fb.group(
       {
         username: fb.control('', { validators: [Validators.minLength(3)] }),
@@ -61,7 +65,16 @@ export class RegisterComponent {
       },
       { validators: matchPasswValidator }
     );
+  }
 
-    this.form.valueChanges.subscribe((value) => console.log({ value }));
+  ngOnInit(): void {
+    this.facade.createdSuccessful.subscribe((val) => console.log({ val }));
+  }
+
+  onSignUp() {
+    this.facade
+      .registerUser(this.form.getRawValue() as RegisterUser)
+      .pipe(first())
+      .subscribe();
   }
 }

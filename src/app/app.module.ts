@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,6 +15,7 @@ import { TopbarComponent } from './layouting';
     BrowserAnimationsModule,
     AppRoutingModule,
     TopbarComponent,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

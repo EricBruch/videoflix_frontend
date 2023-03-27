@@ -65,7 +65,13 @@ import { MatButtonModule } from '@angular/material/button';
     </div>
     <div class="row">
       <div class="col">
-        <button [disabled]="isSignUpDisabled" mat-raised-button>sign up</button>
+        <button
+          [disabled]="isSignUpDisabled"
+          mat-raised-button
+          (click)="signUp.emit()"
+        >
+          sign up
+        </button>
       </div>
     </div>
   </form>`,
