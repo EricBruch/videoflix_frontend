@@ -19,6 +19,13 @@ const routes: Routes = [
         (mod) => mod.RegisterComponent
       ),
   },
+  {
+    path: 'videos',
+    loadChildren: () =>
+      import('./pages/videos/videos-routing.module').then(
+        (mod) => mod.VideosRoutingModule
+      ),
+  },
 ];
 
 @NgModule({
