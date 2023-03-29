@@ -7,8 +7,8 @@ import { AuthControllerService } from './auth-controller.service';
   providedIn: 'root',
 })
 export class UserFacade {
-  private _loginSuccessful = new BehaviorSubject<boolean | null>(null);
-  loginSuccessful = this._loginSuccessful.asObservable();
+  private _isAuthenticated$ = new BehaviorSubject<boolean | null>(null);
+  isAuthenticated$ = this._isAuthenticated$.asObservable();
 
   constructor(private service: AuthControllerService) {}
 
@@ -16,10 +16,10 @@ export class UserFacade {
     return this.service.loginUser(user).pipe(
       tap({
         next: (token) => {
-          this._loginSuccessful.next(true);
+          this._isAuthenticated$.next(true);
           sessionStorage.setItem('token', token.key);
         },
-        error: () => this._loginSuccessful.next(false),
+        error: () => this._isAuthenticated$.next(false),
       })
     );
   }

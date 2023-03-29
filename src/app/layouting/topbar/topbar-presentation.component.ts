@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -20,23 +20,26 @@ import { RouterModule } from '@angular/router';
               </span>
             </div>
             <div class="col">
-              <div class="d-flex justify-content-end">
-                <button
-                  routerLink="login"
-                  mat-raised-button
-                  color="primary"
-                  class="me-2"
-                >
-                  login
-                </button>
-
-                <button routerLink="register" mat-raised-button>sign up</button>
+              <div
+                *ngIf="isAuthenticated; else notAuthenticated"
+                class="text-end"
+              >
+                Welcome to videoflix
               </div>
             </div>
           </div>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>
+
+    <ng-template #notAuthenticated>
+      <div class="d-flex justify-content-end">
+        <a mat-raised-button routerLink="login" class="me-2">Login</a>
+        <a mat-raised-button routerLink="register">Sign Up</a>
+      </div>
+    </ng-template>
   `,
 })
-export class TopbarPresentationComponent {}
+export class TopbarPresentationComponent {
+  @Input() isAuthenticated: null | boolean = null;
+}

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { UserFacade } from 'src/app/core';
 import { TopbarPresentationComponent } from './topbar-presentation.component';
 
 @Component({
@@ -7,6 +8,10 @@ import { TopbarPresentationComponent } from './topbar-presentation.component';
   standalone: true,
   imports: [CommonModule, TopbarPresentationComponent],
   changeDetection: ChangeDetectionStrategy.Default,
-  template: `<app-topbar-presentation></app-topbar-presentation>`,
+  template: `<app-topbar-presentation
+    [isAuthenticated]="userFacade.isAuthenticated$ | async"
+  ></app-topbar-presentation>`,
 })
-export class TopbarComponent {}
+export class TopbarComponent {
+  constructor(public userFacade: UserFacade) {}
+}
