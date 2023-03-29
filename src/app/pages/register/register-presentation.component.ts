@@ -6,10 +6,8 @@ import {
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterForm } from './register.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { EmailInputComponent, TextInputComponent } from 'src/app/shared';
 import { MatButtonModule } from '@angular/material/button';
 

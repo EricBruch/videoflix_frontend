@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
-import { AuthControllerService, RegisterUser } from 'src/app/core';
+import { AuthControllerService } from 'src/app/core';
+import { RegisterUser } from 'src/app/shared';
 
 @Injectable({
   providedIn: 'root',

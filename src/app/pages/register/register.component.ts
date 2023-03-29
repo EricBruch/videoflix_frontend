@@ -12,8 +12,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { RegisterFacade } from './register.facade';
-import { RegisterUser } from 'src/app/core';
 import { first } from 'rxjs';
+import { minChars } from 'src/app/shared/validators';
+import { RegisterUser } from 'src/app/shared';
 
 const matchPasswValidator: ValidatorFn = (
   a: AbstractControl
@@ -50,17 +51,19 @@ export class RegisterComponent implements OnInit {
   constructor(fb: FormBuilder, private facade: RegisterFacade) {
     this.form = fb.group(
       {
-        username: fb.control('', { validators: [Validators.minLength(3)] }),
+        username: fb.control('', {
+          validators: [...minChars(3)],
+        }),
         email: fb.control('', {
-          validators: [Validators.minLength(3), Validators.email],
+          validators: [...minChars(3), Validators.email],
         }),
         password1: fb.control(
           { value: '', disabled: false },
-          { validators: [Validators.minLength(8)] }
+          { validators: [...minChars(8)] }
         ),
         password2: fb.control(
           { value: '', disabled: false },
-          { validators: [Validators.minLength(8)] }
+          { validators: [...minChars(8)] }
         ),
       },
       { validators: matchPasswValidator }
@@ -68,6 +71,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // todo add note for user if was created successful or not
     this.facade.createdSuccessful.subscribe((val) => console.log({ val }));
   }
 
