@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
         </div>
       </div>
       <ng-container *ngIf="videoList">
-        <div *ngFor="let v of videoList" class="row border py-3">
+        <div *ngFor="let v of videoList" class="row border rounded py-3">
           <div class="col-3">
             <div><b>Title:</b></div>
             <div>{{ v.title }} - {{ v.created_at | date }}</div>

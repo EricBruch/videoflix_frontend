@@ -10,6 +10,9 @@ export class VideoListFacade {
   private _videoList$ = new BehaviorSubject<Video[]>([]);
   videoList$ = this._videoList$.asObservable();
 
+  private _video$ = new BehaviorSubject<Video | null>(null);
+  video$ = this._video$.asObservable();
+
   constructor(private controller: VideoListControllerService) {}
 
   loadVideos() {
@@ -17,6 +20,16 @@ export class VideoListFacade {
       .getVideos()
       .pipe(
         tap((videoList) => this._videoList$.next(videoList)),
+        first()
+      )
+      .subscribe();
+  }
+
+  loadVideo(id: number) {
+    this.controller
+      .getVideo(id)
+      .pipe(
+        tap((video) => this._video$.next(video)),
         first()
       )
       .subscribe();
