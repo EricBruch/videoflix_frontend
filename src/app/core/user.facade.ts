@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { LoginUser } from '../shared';
 import { AuthControllerService } from './auth-controller.service';
+import { authToken } from './common';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class UserFacade {
       tap({
         next: (token) => {
           this._isAuthenticated$.next(true);
-          sessionStorage.setItem('token', token.key);
+          authToken.setToken(token.key);
         },
         error: () => this._isAuthenticated$.next(false),
       })

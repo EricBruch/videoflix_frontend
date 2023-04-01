@@ -13,3 +13,11 @@ export interface RegisterUser {
 export interface IToken {
   key: string;
 }
+
+export interface Video {
+  id: number;
+  created_at: string;
+  title: string;
+  description: string;
+  video_file: string;
+}
