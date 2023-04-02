@@ -21,3 +21,8 @@ export interface Video {
   description: string;
   video_file: string;
 }
+
+export interface SelectionDropDown<T> {
+  value: T;
+  viewValue: string;
+}
