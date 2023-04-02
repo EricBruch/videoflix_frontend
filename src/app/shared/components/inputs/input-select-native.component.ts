@@ -11,7 +11,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { SelectionDropDown } from '../../models';
+import { ISelection } from '../../models';
 
 /**
  * Provider Expression that allows your component to register as a ControlValueAccessor. This
@@ -63,7 +63,7 @@ export class InputSelectNativeComponent<T> implements ControlValueAccessor {
 
   @Input() hasUnselectOption = true;
 
-  @Input() valueList: SelectionDropDown<T>[] = [];
+  @Input() valueList: ISelection<T>[] = [];
 
   currentSelection: T | null = null;
 

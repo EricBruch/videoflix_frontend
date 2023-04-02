@@ -22,7 +22,11 @@ export interface Video {
   video_file: string;
 }
 
-export interface SelectionDropDown<T> {
+export interface ISelection<T> {
   value: T;
   viewValue: string;
 }
+
+export type Encoding = 'ORIGINAL' | '360P' | '480P' | '720P' | '1080P';
+
+export type EncodingUrls = Record<Encoding, string>;

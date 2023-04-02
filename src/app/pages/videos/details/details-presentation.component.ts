@@ -1,14 +1,34 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InputSelectNativeComponent, Video } from 'src/app/shared';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
+import {
+  Encoding,
+  EncodingUrls,
+  InputSelectNativeComponent,
+  Video,
+} from 'src/app/shared';
 import { FormsModule } from '@angular/forms';
+import { VideoPresentationComponent } from './video-presentation.component';
+
+interface EncodingSelection {
+  value: Encoding;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-details-presentation',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputSelectNativeComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    InputSelectNativeComponent,
+    VideoPresentationComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.Default,
   template: `
     <div *ngIf="video as v" class="container border rounded py-3">
@@ -22,7 +42,7 @@ import { FormsModule } from '@angular/forms';
             [valueList]="encodings"
             [hasUnselectOption]="false"
             [ngModel]="currentEncoding"
-            (ngModelChange)="selectionChange($event)"
+            (ngModelChange)="encodingSelected.emit($event)"
           ></app-input-select-native>
           <div></div>
         </div>
@@ -31,13 +51,11 @@ import { FormsModule } from '@angular/forms';
           <div>{{ v.description }}</div>
         </div>
       </div>
-      <div class="row">
-        <video
-          width="800px"
-          height="800px"
-          controls
-          [src]="v.video_file"
-        ></video>
+      <div *ngIf="currentUrl" class="row">
+        <app-video-presentation
+          class="d-flex justify-content-center"
+          [url]="currentUrl"
+        ></app-video-presentation>
       </div>
     </div>
   `,
@@ -45,14 +63,17 @@ import { FormsModule } from '@angular/forms';
 export class DetailsPresentationComponent {
   @Input() video: Video | null = null;
 
-  selectionChange(value: any) {
-    console.log(value);
-  }
+  @Input() currentUrl = '';
 
-  encodings = [
-    { value: 'original', viewValue: 'Original' },
-    { value: '320', viewValue: '320p' },
+  @Output() encodingSelected = new EventEmitter<Encoding>();
+
+  encodings: EncodingSelection[] = [
+    { value: 'ORIGINAL', viewValue: 'Original' },
+    { value: '360P', viewValue: '360p' },
+    { value: '480P', viewValue: '480p' },
+    { value: '720P', viewValue: '720p' },
+    { value: '1080P', viewValue: '1080p' },
   ];
 
-  currentEncoding = 'original';
+  currentEncoding = 'ORIGINAL';
 }
