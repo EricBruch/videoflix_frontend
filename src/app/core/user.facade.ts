@@ -26,7 +26,7 @@ export class UserFacade {
         },
         error: () => {
           this._isAuthenticated$.next(false);
-          this.notification.doNotification('Autorization not successful');
+          this.notification.doNotification('Autorization not successful!');
         },
       })
     );
@@ -36,5 +36,11 @@ export class UserFacade {
 
   checkForAuthentication() {
     if (authToken.hasToken()) this._isAuthenticated$.next(true);
+  }
+
+  logout() {
+    authToken.deleteToken();
+    this.notification.doNotification('User was logged out!');
+    window.location.reload();
   }
 }

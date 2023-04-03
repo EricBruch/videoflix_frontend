@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { BtnRouterlinkComponent } from 'src/app/shared';
+import { BtnRouterlinkComponent, BtnSimpleComponent } from 'src/app/shared';
+import { UserFacade } from 'src/app/core';
 
 @Component({
   selector: 'app-topbar-presentation',
@@ -14,6 +20,7 @@ import { BtnRouterlinkComponent } from 'src/app/shared';
     RouterModule,
     MatToolbarModule,
     BtnRouterlinkComponent,
+    BtnSimpleComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -29,9 +36,13 @@ import { BtnRouterlinkComponent } from 'src/app/shared';
             <div class="col">
               <div
                 *ngIf="isAuthenticated; else notAuthenticated"
-                class="text-end"
+                class="d-flex justify-content-around"
               >
-                Welcome to videoflix
+                <div>Welcome to videoflix</div>
+                <app-btn-simple
+                  (clicked)="onLogoutClicked()"
+                  txt="logout"
+                ></app-btn-simple>
               </div>
             </div>
           </div>
@@ -53,4 +64,10 @@ import { BtnRouterlinkComponent } from 'src/app/shared';
 })
 export class TopbarPresentationComponent {
   @Input() isAuthenticated: null | boolean = null;
+
+  private user = inject(UserFacade);
+
+  onLogoutClicked() {
+    this.user.logout();
+  }
 }

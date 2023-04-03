@@ -11,4 +11,5 @@ export const authToken = {
     return val as string;
   },
   hasToken: () => !!sessionStorage.getItem(token),
+  deleteToken: () => sessionStorage.removeItem(token),
 };
