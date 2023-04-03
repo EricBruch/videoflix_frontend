@@ -39,11 +39,7 @@ export const CONTROL_VALUE_ACCESSOR: any = {
   providers: [CONTROL_VALUE_ACCESSOR],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-form-field
-      class="overwrite-select-matNativeControl mt-3"
-      appearance="outline"
-      floatLabel="always"
-    >
+    <mat-form-field class="mt-3 w-100" appearance="outline" floatLabel="always">
       <mat-label>{{ label }}</mat-label>
       <select
         matNativeControl

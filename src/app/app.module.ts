@@ -9,6 +9,10 @@ import { AppComponent } from './app.component';
 import { TopbarComponent } from './layouting';
 import { AuthInterceptor } from './core';
 import { DatePipe } from '@angular/common';
+import {
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatSnackBarModule,
+} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +22,7 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     TopbarComponent,
     HttpClientModule,
+    MatSnackBarModule,
   ],
   providers: [
     DatePipe,

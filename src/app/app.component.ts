@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UserFacade } from './core';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserFacade } from './core';
 export class AppComponent implements OnInit {
   title = 'videoflix';
 
-  constructor(private facade: UserFacade) {}
+  facade = inject(UserFacade);
 
   ngOnInit(): void {
     // NOTE: could there be some highjacking or error cases? even through session-storage is used

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { LoginUser } from '../shared';
 import { AuthControllerService } from './auth-controller.service';
 import { authToken } from './common';
+import { NotificationService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,8 @@ import { authToken } from './common';
 export class UserFacade {
   private _isAuthenticated$ = new BehaviorSubject<boolean | null>(null);
   isAuthenticated$ = this._isAuthenticated$.asObservable();
+
+  private notification = inject(NotificationService);
 
   constructor(private service: AuthControllerService) {}
 
@@ -19,8 +22,12 @@ export class UserFacade {
         next: (token) => {
           this._isAuthenticated$.next(true);
           authToken.setToken(token.key);
+          this.notification.doNotification('Authorization successful!');
         },
-        error: () => this._isAuthenticated$.next(false),
+        error: () => {
+          this._isAuthenticated$.next(false);
+          this.notification.doNotification('Autorization not successful');
+        },
       })
     );
   }
