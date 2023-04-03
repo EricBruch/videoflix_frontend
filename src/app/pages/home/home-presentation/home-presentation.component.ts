@@ -1,17 +1,25 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { UserFacade } from 'src/app/core';
+import { BtnRouterlinkComponent } from 'src/app/shared';
 
 @Component({
   selector: 'app-home-presentation',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, BtnRouterlinkComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div>
       <p class="text-center">Welcome to videoflix startpage</p>
-      <span routerLink="/videos"> Videos </span>
+      <div
+        *ngIf="isAuthenticated$ | async"
+        class="d-flex justify-content-center"
+      >
+        <app-btn-routerlink link="/videos" txt="to videos"></app-btn-routerlink>
+      </div>
     </div>
   `,
 })
-export class HomePresentationComponent {}
+export class HomePresentationComponent {
+  isAuthenticated$ = inject(UserFacade).isAuthenticated$;
+}

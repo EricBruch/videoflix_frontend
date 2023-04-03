@@ -3,11 +3,18 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { BtnRouterlinkComponent } from 'src/app/shared';
 
 @Component({
   selector: 'app-topbar-presentation',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatToolbarModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    BtnRouterlinkComponent,
+    RouterModule,
+    MatToolbarModule,
+    BtnRouterlinkComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <mat-toolbar class="mt-2" color="primary">
@@ -34,8 +41,12 @@ import { RouterModule } from '@angular/router';
 
     <ng-template #notAuthenticated>
       <div class="d-flex justify-content-end">
-        <a mat-raised-button routerLink="login" class="me-2">Login</a>
-        <a mat-raised-button routerLink="register">Sign Up</a>
+        <app-btn-routerlink
+          link="/login"
+          class="me-2"
+          txt="Login"
+        ></app-btn-routerlink>
+        <app-btn-routerlink link="/register" txt="Sign Up"></app-btn-routerlink>
       </div>
     </ng-template>
   `,
