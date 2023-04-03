@@ -24,4 +24,10 @@ export class UserFacade {
       })
     );
   }
+
+  isCurrAuthenticated = () => !!this._isAuthenticated$.value;
+
+  checkForAuthentication() {
+    if (authToken.hasToken()) this._isAuthenticated$.next(true);
+  }
 }
