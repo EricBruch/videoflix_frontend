@@ -16,7 +16,7 @@ import { Encoding, EncodingUrls } from 'src/app/shared';
     (encodingSelected)="onEncodingSelected($event)"
   ></app-details-presentation>`,
 })
-export class DetailsComponent implements OnInit {
+export class PageComponent implements OnInit {
   currentUrl = '';
 
   private videoUrls!: EncodingUrls;

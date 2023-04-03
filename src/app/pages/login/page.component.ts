@@ -29,7 +29,7 @@ export type LoginForm = FormGroup<{
     (login)="onLogin()"
   ></app-login-presentation>`,
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class PageComponent implements OnInit, OnDestroy {
   form;
 
   private subs = new Subscription();

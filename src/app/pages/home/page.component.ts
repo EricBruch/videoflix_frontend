@@ -9,4 +9,4 @@ import { HomePresentationComponent } from './home-presentation/home-presentation
   changeDetection: ChangeDetectionStrategy.Default,
   template: ` <app-home-presentation></app-home-presentation>`,
 })
-export class HomeComponent {}
+export class PageComponent {}

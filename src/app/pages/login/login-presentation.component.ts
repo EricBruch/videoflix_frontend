@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginForm } from './login.component';
+import { LoginForm } from './page.component';
 import { TextInputComponent } from 'src/app/shared';
 import { MatButtonModule } from '@angular/material/button';
 

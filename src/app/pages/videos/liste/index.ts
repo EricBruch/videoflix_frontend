@@ -1,1 +1,1 @@
-export * from './liste.component';
+export * from './page.component';

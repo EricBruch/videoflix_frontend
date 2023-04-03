@@ -11,7 +11,7 @@ import { VideoListFacade } from '../videos-facade.service';
     [videoList]="facade.videoList$ | async"
   ></app-liste-presentation>`,
 })
-export class ListeComponent implements OnInit {
+export class PageComponent implements OnInit {
   constructor(public facade: VideoListFacade) {}
 
   ngOnInit(): void {

@@ -45,7 +45,7 @@ export type RegisterForm = FormGroup<{
     (signUp)="onSignUp()"
   ></app-register-presentation>`,
 })
-export class RegisterComponent implements OnInit {
+export class PageComponent implements OnInit {
   form;
 
   constructor(fb: FormBuilder, private facade: RegisterFacade) {

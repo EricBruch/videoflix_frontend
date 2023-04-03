@@ -13,14 +13,14 @@ const routes: Routes = [
     path: 'login',
     title: 'login',
     loadComponent: () =>
-      import('./pages/login/login.component').then((mod) => mod.LoginComponent),
+      import('./pages/login/page.component').then((mod) => mod.PageComponent),
   },
   {
     path: 'register',
     title: 'register',
     loadComponent: () =>
-      import('./pages/register/register.component').then(
-        (mod) => mod.RegisterComponent
+      import('./pages/register/page.component').then(
+        (mod) => mod.PageComponent
       ),
   },
   {
