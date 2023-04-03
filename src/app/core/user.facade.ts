@@ -13,8 +13,7 @@ export class UserFacade {
   isAuthenticated$ = this._isAuthenticated$.asObservable();
 
   private notification = inject(NotificationService);
-
-  constructor(private service: AuthControllerService) {}
+  private service = inject(AuthControllerService);
 
   login(user: LoginUser) {
     return this.service.loginUser(user).pipe(

@@ -45,7 +45,7 @@ export type RegisterForm = FormGroup<{
     (signUp)="onSignUp()"
   ></app-register-presentation>`,
 })
-export class PageComponent implements OnInit {
+export class PageComponent {
   form;
 
   constructor(fb: FormBuilder, private facade: RegisterFacade) {
@@ -68,11 +68,6 @@ export class PageComponent implements OnInit {
       },
       { validators: matchPasswValidator }
     );
-  }
-
-  ngOnInit(): void {
-    // todo add note for user if was created successful or not
-    this.facade.createdSuccessful.subscribe((val) => console.log({ val }));
   }
 
   onSignUp() {
