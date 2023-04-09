@@ -26,12 +26,12 @@ import { UserFacade } from 'src/app/core';
       <mat-toolbar-row>
         <div class="container">
           <div class="row">
-            <div class="col">
+            <div class="col-2">
               <span routerLink="home" class="cursor-pointer icon-size-xxl">
                 <i class="bi bi-person-video3"></i> Videoflix
               </span>
             </div>
-            <div class="col">
+            <div class="col-6">
               <div
                 *ngIf="isAuthenticated; else notAuthenticated"
                 class="d-flex justify-content-around"
@@ -42,6 +42,18 @@ import { UserFacade } from 'src/app/core';
                   txt="logout"
                 ></app-btn-simple>
               </div>
+            </div>
+            <div class="col-4">
+              <app-btn-routerlink
+                link="/impressum"
+                class="me-2"
+                txt="impressum"
+              ></app-btn-routerlink>
+              <app-btn-routerlink
+                link="/data-privacy"
+                class="me-2"
+                txt="data disclamer"
+              ></app-btn-routerlink>
             </div>
           </div>
         </div>

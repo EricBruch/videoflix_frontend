@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <a mat-raised-button [routerLink]="link" class="mt-2">
+    <a mat-raised-button [routerLink]="link">
       {{ txt }}
     </a>
   `,

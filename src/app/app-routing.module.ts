@@ -4,6 +4,22 @@ import { authGuard } from './core/auth.guard';
 
 const routes: Routes = [
   {
+    path: 'impressum',
+    title: 'impressum',
+    loadComponent: () =>
+      import('./pages/impressum/impressum.component').then(
+        (mod) => mod.ImpressumComponent
+      ),
+  },
+  {
+    path: 'data-privacy',
+    title: 'data-privacy',
+    loadComponent: () =>
+      import(
+        './pages/datenschutzerklaerung/datenschutzerklaerung.component'
+      ).then((mod) => mod.DatenschutzerklaerungComponent),
+  },
+  {
     path: 'home',
     title: 'home',
     loadComponent: () =>
