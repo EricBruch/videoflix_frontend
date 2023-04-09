@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IToken, LoginUser, RegisterUser } from '../shared';
-import { baseUrl } from './common';
+import { environment as env } from 'src/environments/environment';
 
-const api = `${baseUrl}/api/v1` as const;
+const api = `${env.baseUrl}/api/v1` as const;
 const authApi = `${api}/dj-rest-auth` as const;
 
 @Injectable({

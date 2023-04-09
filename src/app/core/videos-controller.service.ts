@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Video } from '../shared';
-import { baseUrl } from './common';
+import { environment as env } from 'src/environments/environment';
 
-const url = `${baseUrl}/videos` as const;
+const url = `${env.baseUrl}/videos` as const;
 
 @Injectable({
   providedIn: 'root',
