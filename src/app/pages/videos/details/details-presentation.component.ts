@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  BtnRouterlinkComponent,
   Encoding,
-  EncodingUrls,
   InputSelectNativeComponent,
   Video,
 } from 'src/app/shared';
@@ -28,10 +28,20 @@ interface EncodingSelection {
     FormsModule,
     InputSelectNativeComponent,
     VideoPresentationComponent,
+    BtnRouterlinkComponent,
   ],
   changeDetection: ChangeDetectionStrategy.Default,
   template: `
     <div *ngIf="video as v" class="container border rounded py-3">
+      <div class="row mb-2">
+        <div class="col">
+          <app-btn-routerlink
+            link="/videos"
+            class=""
+            txt="back to videos"
+          ></app-btn-routerlink>
+        </div>
+      </div>
       <div class="row">
         <div class="col">
           <div><b>Title:</b></div>

@@ -70,4 +70,8 @@ export class VideoListFacade {
       )
       .subscribe();
   }
+
+  resetVideo() {
+    this._video$.next(null);
+  }
 }

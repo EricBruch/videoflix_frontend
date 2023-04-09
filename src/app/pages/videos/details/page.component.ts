@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailsPresentationComponent } from './details-presentation.component';
 import { VideoListFacade } from '../videos-facade.service';
 import { ActivatedRoute } from '@angular/router';
-import { filter, first, map, Observable, Subscription, tap } from 'rxjs';
+import { first, tap } from 'rxjs';
 import { Encoding, EncodingUrls } from 'src/app/shared';
 
 @Component({
@@ -19,14 +19,14 @@ import { Encoding, EncodingUrls } from 'src/app/shared';
 export class PageComponent implements OnInit {
   currentUrl = '';
 
+  facade = inject(VideoListFacade);
+  private actRoute = inject(ActivatedRoute);
+
   private videoUrls!: EncodingUrls;
 
-  constructor(
-    public facade: VideoListFacade,
-    private actRoute: ActivatedRoute
-  ) {}
-
   ngOnInit(): void {
+    this.facade.resetVideo();
+
     this.facade.loadVideo(
       +(this.actRoute.snapshot.paramMap.get('id') as string)
     );

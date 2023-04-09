@@ -5,7 +5,6 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { BtnRouterlinkComponent, BtnSimpleComponent } from 'src/app/shared';
@@ -19,7 +18,6 @@ import { UserFacade } from 'src/app/core';
     BtnRouterlinkComponent,
     RouterModule,
     MatToolbarModule,
-    BtnRouterlinkComponent,
     BtnSimpleComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
