@@ -6,7 +6,12 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginPresentationComponent } from './login-presentation.component';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { minChars } from 'src/app/shared/validators';
 import { LoginUser } from 'src/app/shared';
 import { UserFacade } from 'src/app/core';
@@ -16,6 +21,7 @@ import { Router } from '@angular/router';
 export type LoginForm = FormGroup<{
   username: FormControl<string | null>;
   password: FormControl<string | null>;
+  email: FormControl<string | null>;
 }>;
 
 @Component({
@@ -40,12 +46,9 @@ export class PageComponent implements OnInit, OnDestroy {
     fb: FormBuilder
   ) {
     this.form = fb.nonNullable.group({
-      username: fb.control('', {
-        validators: [...minChars(3)],
-      }),
-      password: fb.control('', {
-        validators: [...minChars(8)],
-      }),
+      username: fb.control('', { validators: [...minChars(4)] }),
+      password: fb.control('', { validators: [...minChars(8)] }),
+      email: fb.control('', { validators: Validators.email }),
     });
   }
 

@@ -39,7 +39,7 @@ export class UserFacade {
 
   logout() {
     authToken.deleteToken();
+    this._isAuthenticated$.next(false);
     this.notification.doNotification('User was logged out!');
-    window.location.reload();
   }
 }

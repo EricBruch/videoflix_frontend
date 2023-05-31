@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { BtnRouterlinkComponent, BtnSimpleComponent } from 'src/app/shared';
 import { UserFacade } from 'src/app/core';
 
@@ -77,7 +77,10 @@ export class TopbarPresentationComponent {
 
   private user = inject(UserFacade);
 
+  private router = inject(Router);
+
   onLogoutClicked() {
     this.user.logout();
+    this.router.navigateByUrl('/');
   }
 }

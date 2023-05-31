@@ -42,6 +42,13 @@ import { MatButtonModule } from '@angular/material/button';
           placeholder="password..."
         ></app-text-input>
       </div>
+      <div class="col">
+        <app-text-input
+          formControlName="email"
+          label="Email"
+          placeholder="email..."
+        ></app-text-input>
+      </div>
     </div>
     <div class="row">
       <div class="col">

@@ -52,7 +52,7 @@ export class PageComponent {
     this.form = fb.group(
       {
         username: fb.control('', {
-          validators: [...minChars(3)],
+          validators: [...minChars(4)],
         }),
         email: fb.control('', {
           validators: [...minChars(3), Validators.email],
