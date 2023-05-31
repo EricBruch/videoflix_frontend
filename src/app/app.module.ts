@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,10 +9,9 @@ import { AppComponent } from './app.component';
 import { TopbarComponent } from './layouting';
 import { AuthInterceptor } from './core';
 import { DatePipe } from '@angular/common';
-import {
-  MAT_SNACK_BAR_DEFAULT_OPTIONS,
-  MatSnackBarModule,
-} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import * as Sentry from '@sentry/angular-ivy';
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +26,22 @@ import {
   providers: [
     DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: true,
+      }),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
