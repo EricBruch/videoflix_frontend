@@ -32,6 +32,14 @@ const routes: Routes = [
       import('./pages/login/page.component').then((mod) => mod.PageComponent),
   },
   {
+    path: 'password',
+    title: 'password',
+    loadComponent: () =>
+      import('./pages/password/page.component').then(
+        (mod) => mod.PageComponent
+      ),
+  },
+  {
     path: 'register',
     title: 'register',
     loadComponent: () =>

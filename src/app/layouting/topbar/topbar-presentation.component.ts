@@ -1,14 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
-  inject,
+  Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { BtnRouterlinkComponent, BtnSimpleComponent } from 'src/app/shared';
-import { UserFacade } from 'src/app/core';
 
 @Component({
   selector: 'app-topbar-presentation',
@@ -38,7 +38,7 @@ import { UserFacade } from 'src/app/core';
               >
                 <div>Welcome to videoflix</div>
                 <app-btn-simple
-                  (clicked)="onLogoutClicked()"
+                  (clicked)="logout.emit()"
                   txt="logout"
                 ></app-btn-simple>
               </div>
@@ -62,12 +62,16 @@ import { UserFacade } from 'src/app/core';
 
     <ng-template #notAuthenticated>
       <div class="d-flex justify-content-end">
+        <app-btn-routerlink link="/login" txt="Login"></app-btn-routerlink>
         <app-btn-routerlink
-          link="/login"
-          class="me-2"
-          txt="Login"
+          link="/register"
+          txt="Sign Up"
+          class="mx-2"
         ></app-btn-routerlink>
-        <app-btn-routerlink link="/register" txt="Sign Up"></app-btn-routerlink>
+        <app-btn-routerlink
+          link="/password"
+          txt="Forgot Password"
+        ></app-btn-routerlink>
       </div>
     </ng-template>
   `,
@@ -75,12 +79,5 @@ import { UserFacade } from 'src/app/core';
 export class TopbarPresentationComponent {
   @Input() isAuthenticated: null | boolean = null;
 
-  private user = inject(UserFacade);
-
-  private router = inject(Router);
-
-  onLogoutClicked() {
-    this.user.logout();
-    this.router.navigateByUrl('/');
-  }
+  @Output() logout = new EventEmitter();
 }
