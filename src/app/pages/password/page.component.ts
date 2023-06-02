@@ -101,17 +101,29 @@ export class PageComponent implements OnInit, OnDestroy {
   }
 
   onReset() {
-    this.facade.requestPasswordReset(this.form.getRawValue().usernameRequest!);
+    this.form.controls.usernameRequest.markAllAsTouched();
+    this.form.controls.usernameRequest.updateValueAndValidity();
+
+    if (this.form.controls.usernameRequest.valid) {
+      this.facade.requestPasswordReset(
+        this.form.getRawValue().usernameRequest!
+      );
+    }
   }
 
   onConfirm() {
-    const values = this.form.controls.confirm.getRawValue();
+    this.form.controls.confirm.markAllAsTouched();
+    this.form.controls.confirm.updateValueAndValidity();
 
-    this.facade.requestPasswordConfirm({
-      newPassword1: values.newPassword1!,
-      newPassword2: values.newPassword2!,
-      sharedSecret: values.sharedSecret!,
-      username: values.usernameConfirm!,
-    });
+    if (this.form.controls.confirm.valid) {
+      const values = this.form.controls.confirm.getRawValue();
+
+      this.facade.requestPasswordConfirm({
+        newPassword1: values.newPassword1!,
+        newPassword2: values.newPassword2!,
+        sharedSecret: values.sharedSecret!,
+        username: values.usernameConfirm!,
+      });
+    }
   }
 }
