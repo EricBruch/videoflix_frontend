@@ -41,7 +41,6 @@ export type RegisterForm = FormGroup<{
   changeDetection: ChangeDetectionStrategy.Default,
   template: ` <app-register-presentation
     [form]="form"
-    [isSignUpDisabled]="!form.valid"
     (signUp)="onSignUp()"
   ></app-register-presentation>`,
 })
@@ -71,9 +70,14 @@ export class PageComponent {
   }
 
   onSignUp() {
-    this.facade
-      .registerUser(this.form.getRawValue() as RegisterUser)
-      .pipe(first())
-      .subscribe();
+    this.form.markAsTouched();
+    this.form.updateValueAndValidity();
+
+    if (this.form.valid) {
+      this.facade
+        .registerUser(this.form.getRawValue() as RegisterUser)
+        .pipe(first())
+        .subscribe();
+    }
   }
 }
