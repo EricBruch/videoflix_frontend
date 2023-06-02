@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginForm } from './page.component';
 import { TextInputComponent } from 'src/app/shared';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-login-presentation',
@@ -18,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     TextInputComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,36 +33,39 @@ import { MatButtonModule } from '@angular/material/button';
     </div>
     <div class="row">
       <div class="col">
-        <app-text-input
-          formControlName="username"
-          label="Username"
-          placeholder="username..."
-        ></app-text-input>
+        <mat-form-field
+          appearance="outline"
+          floatLabel="always"
+          class="mt-4 w-100"
+        >
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="username..."
+            type="text"
+          />
+        </mat-form-field>
       </div>
       <div class="col">
-        <app-text-input
-          formControlName="password"
-          label="Password"
-          placeholder="password..."
-        ></app-text-input>
-      </div>
-      <div class="col">
-        <app-text-input
-          formControlName="email"
-          label="Email"
-          placeholder="email..."
-        ></app-text-input>
+        <mat-form-field
+          appearance="outline"
+          floatLabel="always"
+          class="mt-4 w-100"
+        >
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            placeholder="password..."
+            type="text"
+          />
+        </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <button
-          [disabled]="isLoginDisabled"
-          mat-raised-button
-          (click)="login.emit()"
-        >
-          login
-        </button>
+        <button mat-raised-button (click)="login.emit()">login</button>
       </div>
     </div>
   </form>`,

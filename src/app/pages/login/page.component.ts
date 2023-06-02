@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
 export type LoginForm = FormGroup<{
   username: FormControl<string | null>;
   password: FormControl<string | null>;
-  email: FormControl<string | null>;
+  // email: FormControl<string | null>;
 }>;
 
 @Component({
@@ -48,7 +48,7 @@ export class PageComponent implements OnInit, OnDestroy {
     this.form = fb.nonNullable.group({
       username: fb.control('', { validators: [...minChars(4)] }),
       password: fb.control('', { validators: [...minChars(8)] }),
-      email: fb.control('', { validators: Validators.email }),
+      // email: fb.control('', { validators: Validators.email }),
     });
   }
 
@@ -68,9 +68,14 @@ export class PageComponent implements OnInit, OnDestroy {
   }
 
   onLogin() {
-    this.userFacade
-      .login(this.form.getRawValue() as LoginUser)
-      .pipe(first())
-      .subscribe();
+    this.form.markAsTouched();
+    this.form.updateValueAndValidity();
+
+    if (this.form.valid) {
+      this.userFacade
+        .login(this.form.getRawValue() as LoginUser)
+        .pipe(first())
+        .subscribe();
+    }
   }
 }
