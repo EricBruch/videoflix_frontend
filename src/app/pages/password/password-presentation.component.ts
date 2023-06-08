@@ -104,7 +104,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
             floatLabel="always"
             class="mt-4 w-100"
           >
-            <mat-label>Repeat Password</mat-label>
+            <mat-label>Shared Secret</mat-label>
             <input
               matInput
               formControlName="sharedSecret"
@@ -119,7 +119,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
             floatLabel="always"
             class="mt-4 w-100"
           >
-            <mat-label>Repeat Password</mat-label>
+            <mat-label>Username</mat-label>
             <input
               matInput
               formControlName="usernameConfirm"
