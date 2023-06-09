@@ -3,7 +3,7 @@ import { BehaviorSubject, tap } from 'rxjs';
 import { LoginUser } from '../shared';
 import { AuthControllerService } from './auth-controller.service';
 import { authToken } from './common';
-import { NotificationService } from './snackbar.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',

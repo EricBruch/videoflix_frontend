@@ -78,6 +78,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
             placeholder="my-password-1234..."
             type="text"
           />
+          <mat-hint>
+            Password needs to have numbers and letters and should be a complex
+            password
+          </mat-hint>
         </mat-form-field>
       </div>
       <div class="col">
@@ -93,10 +97,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
             placeholder="my-password-1234..."
             type="text"
           />
+          <mat-hint>
+            Password needs to have numbers and letters and should be a complex
+            password
+          </mat-hint>
         </mat-form-field>
       </div>
     </div>
-    <div class="row">
+    <div class="row mt-2">
       <div class="col">
         <button mat-raised-button (click)="signUp.emit()">sign up</button>
       </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterPresentationComponent } from './register-presentation.component';
 import {
@@ -15,6 +15,7 @@ import { RegisterFacade } from './register.facade';
 import { first } from 'rxjs';
 import { minChars } from 'src/app/shared/validators';
 import { RegisterUser } from 'src/app/shared';
+import { NotificationService } from 'src/app/core';
 
 const matchPasswValidator: ValidatorFn = (
   a: AbstractControl
@@ -47,7 +48,11 @@ export type RegisterForm = FormGroup<{
 export class PageComponent {
   form;
 
-  constructor(fb: FormBuilder, private facade: RegisterFacade) {
+  constructor(
+    fb: FormBuilder,
+    private facade: RegisterFacade,
+    private notification: NotificationService
+  ) {
     this.form = fb.group(
       {
         username: fb.control('', {
@@ -77,7 +82,25 @@ export class PageComponent {
       this.facade
         .registerUser(this.form.getRawValue() as RegisterUser)
         .pipe(first())
-        .subscribe();
+        .subscribe({
+          error: this.onError.bind(this),
+        });
+    }
+  }
+
+  private onError(err: any) {
+    console.log(err);
+
+    const errorList = err?.error?.password1;
+    if (!errorList) return;
+
+    if (Array.isArray(errorList)) {
+      this.notification.doNotification(errorList.join(' '));
+      return;
+    }
+
+    if (typeof errorList === 'string') {
+      this.notification.doNotification(errorList);
     }
   }
 }
